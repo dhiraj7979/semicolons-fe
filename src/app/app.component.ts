@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { Router, Route, NavigationEnd, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, NavigationExtras } from '@angular/router';
+import { ApiService } from './api.service';
+import { HelperService } from './helper.service';
+import { AuthService } from './shared/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +15,9 @@ export class AppComponent {
   showLeftNav = false
   showRightNav = false
   routes: any[] = []
+  hideLoader = true
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private helper: HelperService, private api: ApiService, private auth: AuthService) {
     const routes = this.router.config
 
     const skipList = ['landing','login','', '**']
@@ -23,7 +27,8 @@ export class AppComponent {
 
         let icon = 'battery_unknown'
         switch(v.path) {
-          case 'landing': icon = 'home';break;
+          case 'landing': icon = 'home';break; // cloud_upload
+          case 'dashboard': icon = 'cloud_upload';break;
           case 'meet-notes': icon = 'people';break;
           case 'slides': icon = 'slideshow';break;
           case 'test-cases': icon = 'medical_information';break;
@@ -69,7 +74,12 @@ export class AppComponent {
 
         console.log("routes on nav end", this.routes)
       }
-    })
+    });
+
+    this.helper.loader.subscribe((e) => this.hideLoader = e.hide)
+
+    // const t = setInterval(() => {this.api.getUrl().subscribe(() => {})}, 2000)
+    // setTimeout(() => clearInterval(t), 5000)
   }
 
   onMenuClick() {
@@ -91,5 +101,11 @@ export class AppComponent {
       // state: { data: 'some data' }
     };
     this.router.navigate([{ outlets: { global: ['login'] } }], navigationExtras);
+  }
+
+  signout()
+  {
+    this.auth.logout();
+    // this.router.navigate(['login']);
   }
 }

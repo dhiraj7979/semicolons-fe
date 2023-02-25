@@ -11,45 +11,59 @@ import { VideoComponent } from './video/video.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UploadDataComponent } from './upload-data/upload-data.component';
+import { AuthGuard } from './shared/auth.guard';
+import { StepperComponent } from './stepper/stepper.component';
+import { DashStepperComponent } from './dash-stepper/dash-stepper.component';
 
 const routes: Routes = [
   {
   path: 'landing',
-  component: LandingComponent
+  component: LandingComponent,
+  canActivate: [AuthGuard]
+},
+{
+  path: 'dashboard',
+  component: DashStepperComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'slides',
-  component: SlideComponent
+  component: SlideComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'videos',
-  component: VideoComponent
+  component: VideoComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'meet-notes',
-  component: NotesComponent
+  component: NotesComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'test-cases',
-  component: SummaryComponent
+  component: SummaryComponent,
+  canActivate: [AuthGuard]
 },
 // {
 //   path: 'final',
 //   component: FinalComponent
 // },
 {
-  path: 'login',
-  component: UserLoginComponent,
-  outlet: 'global'
-},
-{
   path: '',
   redirectTo: 'landing',
-  pathMatch: 'full'
+  pathMatch: 'full',
 },
+// {
+//   path: 'steper',
+//   component: DashStepperComponent,
+//   canActivate: [AuthGuard]
+// },
 {
-  path: 'upload',
-  component: UploadDataComponent,
+  path: 'login',
+  component: UserLoginComponent,
+  // outlet: 'global'
 },
 {
   path: '**',

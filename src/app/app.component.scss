@@ -22,3 +22,46 @@
   }
 }
 
+.xcv-spinner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  background-color: rgba(0,0,0,0.5);
+  &.spinner-hidden {
+    display: none;
+  }
+  .xcv-spinner {
+    // flex: 1 0 auto;
+  }
+}
+
+.flex-toolbar {
+  display: flex !important;
+  flex-direction: row !important;
+  // justify-content: space-between !important;
+
+  span {
+    justify-self: center !important;
+    margin-left: 15%;
+    padding-left: 120px;
+    text-transform: capitalize !important;
+  }
+}
+
+
+.logo {
+  width: 20px;
+  height: auto;
+
+  img {
+    width: 30px;
+    height: auto;
+  }
+}

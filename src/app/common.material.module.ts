@@ -15,6 +15,10 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatInputModule} from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 
+import {MatStepperModule} from '@angular/material/stepper'; 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import {MatSelectModule} from '@angular/material/select';
+
 @NgModule({
     imports: [
       MatToolbarModule,
@@ -28,6 +32,9 @@ import { MatMenuModule } from '@angular/material/menu';
       MatIconModule,
       MatButtonModule,
       MatCardModule,
+      MatProgressSpinnerModule,
+      MatStepperModule,
+      MatSelectModule
     ],
     exports: [
         MatToolbarModule,
@@ -41,6 +48,9 @@ import { MatMenuModule } from '@angular/material/menu';
         MatIconModule,
         MatButtonModule,
         MatCardModule,
+        MatProgressSpinnerModule,
+        MatStepperModule,
+        MatSelectModule
     ]
   })
   export class CommonMaterialModule { }
